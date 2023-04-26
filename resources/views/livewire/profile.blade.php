@@ -11,23 +11,24 @@
         </header>
 
         <form wire:submit.prevent="save" class="mt-6 space-y-6">
+            @csrf
 
             <div>
                 <x-input-label for="name" :value="__('Name')" />
                 <x-text-input wire:model="user.name" id="name" type="text" class="mt-1 block w-full" required autofocus />
-                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                <x-input-error class="mt-2" :messages="$errors->get('user.name')" />
             </div>
 
             <div>
                 <x-input-label for="email" :value="__('Email')" />
                 <x-text-input wire:model="user.email" id="email" type="email" class="mt-1 block w-full" required />
-                <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                <x-input-error class="mt-2" :messages="$errors->get('user.email')" />
             </div>
 
             <div>
                 <x-input-label for="phone_number" :value="__('Phone Number')" />
                 <x-text-input wire:model="user.phone_number" id="phone_number" type="text" class="mt-1 block w-full" required />
-                <x-input-error class="mt-2" :messages="$errors->get('phone_number')" />
+                <x-input-error class="mt-2" :messages="$errors->get('user.phone_number')" />
             </div>
 
             <div class="flex items-center gap-4">

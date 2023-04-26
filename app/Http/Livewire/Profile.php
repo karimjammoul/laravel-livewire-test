@@ -31,6 +31,10 @@ class Profile extends Component
 
         $this->user->save();
 
-        $this->resetValidation();
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'Success!',
+            'text' => 'Profile updated successfully!',
+            'icon' => 'success',
+        ]);
     }
 }

@@ -34,5 +34,16 @@
             </main>
         </div>
         @livewireScripts
+        <!-- Include SweetAlert CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.1.4/sweetalert2.min.css">
+
+        <!-- Include SweetAlert JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.1.4/sweetalert2.min.js"></script>
+
+        <script>
+            window.addEventListener('swal', event => {
+                Swal.fire(event.detail);
+            });
+        </script>
     </body>
 </html>
