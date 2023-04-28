@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Department;
+use App\Models\Gender;
+use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
 
@@ -13,6 +16,9 @@ class Profile extends Component
         'user.name' => ['required'],
         'user.email' => ['required', 'email'],
         'user.phone_number' => ['required'],
+        'user.gender_id' => ['required'],
+        'user.department_id' => ['required'],
+        'user.role_id' => ['required'],
     ];
 
     public function mount()
@@ -22,7 +28,18 @@ class Profile extends Component
 
     public function render()
     {
-        return view('livewire.profile');
+        $data = [];
+
+        $genders = Gender::all();
+        $data['genders'] = $genders;
+
+        $departments = Department::all();
+        $data['departments'] = $departments;
+
+        $roles = Role::all();
+        $data['roles'] = $roles;
+
+        return view('livewire.profile', $data);
     }
 
     public function save()
