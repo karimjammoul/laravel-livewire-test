@@ -47,10 +47,18 @@
                                         {{ $auditTrail->field }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $auditTrail->old_value }}
+                                        @if(str_ends_with($auditTrail->field, '_id'))
+                                            {{ $auditTrail->oldValue?->name }}
+                                        @else
+                                            {{ $auditTrail->old_value_id }}
+                                        @endif
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $auditTrail->new_value }}
+                                        @if(str_ends_with($auditTrail->field, '_id'))
+                                            {{ $auditTrail->newValue?->name }}
+                                        @else
+                                            {{ $auditTrail->new_value_id }}
+                                        @endif
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ $auditTrail->created_at }}
@@ -61,7 +69,7 @@
                         </table>
                     </div>
 
-                    {{ $auditTrails->links() }}
+{{--                    {{ $auditTrails->links() }}--}}
 
                 </div>
             </div>

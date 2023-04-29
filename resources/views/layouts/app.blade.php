@@ -44,6 +44,21 @@
             window.addEventListener('swal', event => {
                 Swal.fire(event.detail);
             });
+            window.addEventListener('swal:confirm', event => {
+                Swal.fire({
+                    title: event.detail.title,
+                    text: event.detail.text,
+                    icon: event.detail.type,
+                    showCancelButton: true,
+                    confirmButtonColor: 'rgb(239 68 6)',
+                    confirmButtonText: 'Yes, delete it!'
+                })
+                .then((willDelete) => {
+                    if (willDelete.isConfirmed) {
+                        window.livewire.emit(event.detail.method, event.detail.id);
+                    }
+                });
+            });
         </script>
     </body>
 </html>

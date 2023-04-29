@@ -46,8 +46,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    const ADMIN_ROLE_ID = 1;
-
     public function gender()
     {
         return $this->belongsTo(Gender::class);
@@ -65,6 +63,6 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role->id == self::ADMIN_ROLE_ID;
+        return $this->role->id == Role::ADMIN_ROLE_ID;
     }
 }

@@ -16,8 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('action');
             $table->string('field');
-            $table->text('old_value')->nullable();
-            $table->text('new_value')->nullable();
+            $table->string('old_value_type');
+            $table->string('old_value_id');
+            $table->string('new_value_type');
+            $table->string('new_value_id');
             $table->timestamps();
         });
     }

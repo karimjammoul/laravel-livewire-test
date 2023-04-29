@@ -10,7 +10,9 @@ class AuditTrail extends Component
     {
         $data = [];
 
-        $auditTrails = \App\Models\AuditTrail::paginate(10);
+        $auditTrails = \App\Models\AuditTrail::query()
+
+            ->paginate(10);
         $data['auditTrails'] = $auditTrails;
 
         return view('livewire.audit-trail', $data);
