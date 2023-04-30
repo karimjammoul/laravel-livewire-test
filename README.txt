@@ -1,10 +1,10 @@
+I've used Laravel, Livewire, and Tailwind for this application.
+
 To setup the database for this application you have to :
 - php artisan migrate
 - php artisan db:seed
 
 There are 3 seeders: Roles Seeder, Departments Seeder, and Genders Seeder.
-
-I've used Laravel, Livewire, and Tailwind for this application.
 
 To run the application you have to :
 - php artisan serve
