@@ -46,7 +46,7 @@
                             </thead>
 
                             <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                            @foreach($users as $user)
+                            @forelse($users as $user)
                                 <tr class="bg-white">
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ $user->name }}
@@ -75,7 +75,13 @@
                                         </button>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr class="bg-white">
+                                    <td class="px-6 py-4 text-sm font-medium text-gray-900 text-center" colspan="7">
+                                        No users available
+                                    </td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -163,7 +169,7 @@
                             <x-text-input wire:model.defer="password" id="password" class="block mt-1 w-full"
                                           type="password"
                                           name="password"
-                                          required autocomplete="new-password" />
+                                          autocomplete="new-password" />
 
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
@@ -174,7 +180,7 @@
 
                             <x-text-input wire:model.defer="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
                                           type="password"
-                                          name="password_confirmation" required autocomplete="new-password" />
+                                          name="password_confirmation" autocomplete="new-password" />
 
                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                         </div>

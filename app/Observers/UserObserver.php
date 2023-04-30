@@ -19,7 +19,7 @@ class UserObserver
 
             $oldVal = $original[$field];
 
-            if ($field === 'updated_at') {
+            if ( in_array($field, ['updated_at', 'remember_token']) ) {
                 continue;
             }
 

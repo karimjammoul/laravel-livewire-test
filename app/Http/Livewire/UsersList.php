@@ -34,7 +34,7 @@ class UsersList extends Component
             'user.gender_id' => ['required'],
             'user.department_id' => ['required'],
             'user.role_id' => ['required'],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => ['confirmed', Password::defaults()],
         ];
     }
 
@@ -42,7 +42,9 @@ class UsersList extends Component
     {
         $data = [];
 
-        $users = User::paginate(10);
+        $users = User::query()
+            ->whereNot('role_id', Role::ADMIN_ROLE_ID)
+            ->paginate(10);
         $data['users'] = $users;
 
         $genders = Gender::all();
@@ -59,6 +61,7 @@ class UsersList extends Component
 
     public function openModal()
     {
+        $this->reset(['password', 'password_confirmation']);
         $this->showModal = true;
 
         $this->user = new User();
@@ -68,7 +71,9 @@ class UsersList extends Component
     {
         $this->validate();
 
-        $this->user->password = Hash::make($this->password);
+        if ($this->password) {
+            $this->user->password = Hash::make($this->password);
+        }
         $this->user->save();
 
         $this->resetValidation();

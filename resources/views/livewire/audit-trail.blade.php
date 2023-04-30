@@ -35,7 +35,7 @@
                             </thead>
 
                             <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                            @foreach($auditTrails as $auditTrail)
+                            @forelse($auditTrails as $auditTrail)
                                 <tr class="bg-white">
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ $auditTrail->user->name }}
@@ -64,7 +64,13 @@
                                         {{ $auditTrail->created_at }}
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr class="bg-white">
+                                    <td class="px-6 py-4 text-sm font-medium text-gray-900 text-center" colspan="6">
+                                        No data available
+                                    </td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
