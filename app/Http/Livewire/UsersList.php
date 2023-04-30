@@ -114,6 +114,7 @@ class UsersList extends Component
 
     public function delete(User $user)
     {
+        $user->auditTrails()->delete();
         $user->delete();
     }
 }

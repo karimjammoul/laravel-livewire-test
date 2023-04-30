@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->role->id == Role::ADMIN_ROLE_ID;
     }
+
+    public function auditTrails()
+    {
+        return $this->hasMany(AuditTrail::class);
+    }
 }
