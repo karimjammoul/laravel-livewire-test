@@ -19,7 +19,8 @@ email: user@user.com
 password: 12345678
 
 For the 5th feature "Admin Existence", I made a Users Datatable containing all the users that has role other than admin,
-the admin has the ability to add, edit, delete the users and their profiles in this datatable.
+the admin has the ability to add, edit, delete the users and their profiles in this datatable, also I've made an Admin Middleware,
+to the dashboard and audit trails pages.
 
 For the 7th feature "Audit Trails", I made a User Observer that track the changes for the user profile when updating, and
 storing the data in the db, plus there is a datatable that shows all the changes made by the users, and to be able to show the
