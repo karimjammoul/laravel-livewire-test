@@ -41,10 +41,10 @@
                                         {{ $auditTrail->user->name }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $auditTrail->action }}
+                                        {{ toReadableString($auditTrail->action) }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $auditTrail->field }}
+                                        {{ toReadableString($auditTrail->field) }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         @if(str_ends_with($auditTrail->field, '_id'))

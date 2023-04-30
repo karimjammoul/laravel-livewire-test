@@ -29,7 +29,10 @@ class UserObserver
                     'gender_id' => Gender::class,
                     'department_id' => Department::class,
                     'role_id' => Role::class,
-                    default => 'name',
+                    'name' => 'name',
+                    'phone_number' => 'phone_number',
+                    'email' => 'email',
+                    'password' => 'password',
                 };
 
                 AuditTrail::create([
