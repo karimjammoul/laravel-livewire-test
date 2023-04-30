@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\Gender;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -69,6 +70,10 @@ class UsersList extends Component
 
     public function save()
     {
+        if (! Gate::allows('edit-profile', $this->user) ) {
+            abort(404);
+        }
+
         $this->validate();
 
         if ($this->password) {

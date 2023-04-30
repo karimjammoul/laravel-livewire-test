@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\Gender;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class Profile extends Component
@@ -44,6 +45,11 @@ class Profile extends Component
 
     public function save()
     {
+
+        if (! Gate::allows('edit-profile', $this->user) ) {
+            abort(404);
+        }
+
         $this->validate();
 
         $this->user->save();
