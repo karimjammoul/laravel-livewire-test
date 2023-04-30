@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Category;
 use App\Models\Department;
 use App\Models\Gender;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -20,8 +20,8 @@ class UsersList extends Component
 
     public bool $showModal = false;
 
-    public string $password;
-    public string $password_confirmation;
+    public string $password = '';
+    public string $password_confirmation = '';
 
     protected $listeners = ['delete'];
 
@@ -29,7 +29,7 @@ class UsersList extends Component
     {
         return [
             'user.name' => ['required'],
-            'user.email' => ['required', 'email'],
+            'user.email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->user->id)],
             'user.phone_number' => ['required'],
             'user.gender_id' => ['required'],
             'user.department_id' => ['required'],
@@ -87,6 +87,7 @@ class UsersList extends Component
 
         $this->showModal = true;
 
+        $this->reset(['password', 'password_confirmation']);
         $this->user = $user;
     }
 
